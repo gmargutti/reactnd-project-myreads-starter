@@ -43,7 +43,7 @@ class BooksApp extends React.Component {
             )}>
             </Route>
             <Route path='/search' render={() => (
-              <Search setLoading={this.setLoading} />
+              <Search setLoading={this.setLoading} changeShelf={this.changeShelf} registeredBooks={this.state.books} />
             )}></Route>
           </div>
           <div className="ld ld-ball ld-flip" style={{fontSize: 48}}></div>

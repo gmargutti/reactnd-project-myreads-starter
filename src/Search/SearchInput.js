@@ -10,8 +10,20 @@ class SearchInput extends Component {
         showAutoComplete: false
     }
     componentDidUpdate() {
-        if(searchTerms.filter(term => term === this.state.filter).length > 0)
-            BooksAPI.search(this.state.filter)
+        if(searchTerms.filter(term => term === this.state.filter).length > 0) {
+            new Promise((resolve, reject) => resolve(true))
+            .then((res) => {
+                this.props.setLoading(res)
+            })
+            .then(() => {
+                BooksAPI.search(this.state.filter)
+                .then(data => this.props.filter_OnChange(data))
+                .then(() => this.props.setLoading(false))
+            })
+        }
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state.filter !== nextState.filter
     }
     filter_OnChange = (value) => {
         this.setState({

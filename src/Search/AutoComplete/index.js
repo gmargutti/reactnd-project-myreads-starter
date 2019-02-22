@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 function AutoComplete(props) {
     const { terms, autoComplete_OnChange } = props
@@ -17,6 +18,11 @@ function AutoComplete(props) {
             ))}
         </select>
     )
+}
+
+AutoComplete.propTypes = {
+    terms: PropTypes.array,
+    autoComplete_OnChange: PropTypes.func
 }
 
 export default AutoComplete

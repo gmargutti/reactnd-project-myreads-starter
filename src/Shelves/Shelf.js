@@ -17,7 +17,9 @@ class Shelf extends Component {
 
 Shelf.propTypes = {
     shelf: PropTypes.object,
-    books: PropTypes.array
+    books: PropTypes.array,
+    changeShelf: PropTypes.func,
+    setLoading: PropTypes.func
 }
 
 export default Shelf

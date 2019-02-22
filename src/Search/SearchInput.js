@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import searchTerms from './SearchTerms'
 import * as BooksAPI from '../BooksAPI'
 import AutoComplete from './AutoComplete'
+import PropTypes from 'prop-types'
 
 class SearchInput extends Component {
     state = {
@@ -67,6 +68,11 @@ class SearchInput extends Component {
             </div>
         )
     }
+}
+
+SearchInput.propTypes = {
+    filter_OnChange: PropTypes.func,
+    setLoading: PropTypes.func
 }
 
 export default SearchInput

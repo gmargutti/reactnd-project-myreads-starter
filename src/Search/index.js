@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SearchInput from './SearchInput'
 import Books from '../Books'
+import PropTypes from 'prop-types'
 
 class Search extends Component {
     state = {
@@ -17,7 +18,7 @@ class Search extends Component {
         })
     }
     render() {
-        const { setLoading, changeShelf, registeredBooks } = this.props
+        const { setLoading, changeShelf } = this.props
         return(
             <div className="search-books">
                 <SearchInput filter_OnChange={this.filter_OnChange} filteredBooks={this.state.books} setLoading={setLoading} />
@@ -27,6 +28,12 @@ class Search extends Component {
           </div>
         )
     }
+}
+
+Search.propTypes = {
+    setLoading: PropTypes.func,
+    changeShelf: PropTypes.func,
+    registeredBooks: PropTypes.array
 }
 
 export default Search

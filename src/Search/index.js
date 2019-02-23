@@ -10,14 +10,21 @@ class Search extends Component {
     }
     //Update all filtered books, according to the search criteria, to match their shelves
     filter_OnChange = (books) => {
-        books.map(book => {
-            const registered = this.props.registeredBooks.filter((current) => current.id === book.id)[0]
-            book.shelf = registered ? registered.shelf : 'none'
-            return book
-        })
-        this.setState({
-            books: books
-        })
+        if(!books.error) {
+            books.map(book => {
+                const registered = this.props.registeredBooks.filter((current) => current.id === book.id)[0]
+                book.shelf = registered ? registered.shelf : 'none'
+                return book
+            })
+            this.setState({
+                books: books
+            })
+        }
+        else {
+            this.setState({
+                books: []
+            })
+        }
     }
     render() {
         const { setLoading, changeShelf } = this.props

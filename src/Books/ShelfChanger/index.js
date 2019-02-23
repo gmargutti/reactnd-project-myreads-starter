@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
+//Functional Stateless Component responsible for providing the changing shelf functionality
 function ShelfChanger(props) {
     const { changeShelf, currentShelf, book, setLoading } = props
+    //Function that will properly handle the shelf changing
     const handleChange = (value) => {
+        //Promise to keep things sync
         new Promise((resolve, reject) => {
             resolve(true)
         }).then(result => {

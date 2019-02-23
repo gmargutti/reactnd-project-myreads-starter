@@ -5,33 +5,38 @@ import * as BooksAPI from '../BooksAPI'
 import AutoComplete from './AutoComplete'
 import PropTypes from 'prop-types'
 
+//Component that will provide the search functionality and validation
 class SearchInput extends Component {
     state = {
         filter: '',
         showAutoComplete: false
     }
     componentDidUpdate() {
-        if(searchTerms.filter(term => term === this.state.filter).length > 0) {
-            new Promise((resolve, reject) => resolve(true))
-            .then((res) => {
-                this.props.setLoading(res)
-            })
-            .then(() => {
+        if(this.state.filter !== '')
+        new Promise((resolve, reject) => resolve(true))
+        .then((res) => {
+            this.props.setLoading(res)
+        })
+        .then(() => {
+            //Get books list according to search criteria after setting the 'loading' state
                 BooksAPI.search(this.state.filter)
                 .then(data => this.props.filter_OnChange(data))
                 .then(() => this.props.setLoading(false))
             })
-        }
+        else
+            this.props.filter_OnChange([])
     }
     shouldComponentUpdate(nextProps, nextState) {
         return this.state.filter !== nextState.filter
     }
+    //Handles the filter change
     filter_OnChange = (value) => {
         this.setState({
             filter: value,
             showAutoComplete: value ? true : false
         })
     }
+    //Handles the autocomplete change, when it has been clicked and a value selected.
     autoComplete_OnChange = value => {
         this.setState({
             filter: value,
@@ -61,8 +66,9 @@ class SearchInput extends Component {
                     </div>
                 </div>
                 {
+                    //Show autocomplete component only if the filter has some input
                     this.state.showAutoComplete 
-                    ? (<AutoComplete terms={searchTerms.filter(term => term.includes(this.state.filter))} autoComplete_OnChange={this.autoComplete_OnChange} />)
+                    ? (<AutoComplete terms={searchTerms.filter(term => term.toLowerCase().includes(this.state.filter.toLocaleLowerCase()))} autoComplete_OnChange={this.autoComplete_OnChange} />)
                     : ''
                 }
             </div>

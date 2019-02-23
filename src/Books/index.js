@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Book from './Book';
 
+//Functional Stateless Component that will provide the books listing
 function Books(props) {
     const { books, changeShelf, setLoading } = props
     return(

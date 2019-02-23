@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+//Functional Stateless Component that will provide the Autocomplete functionality to the search input
 function AutoComplete(props) {
     const { terms, autoComplete_OnChange } = props
     return (

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Books from '../Books'
 import PropTypes from 'prop-types'
 
-
+//Component that will render each shelf sepparately 
 class Shelf extends Component {
     render() {
         const { shelf, books, changeShelf, setLoading } = this.props

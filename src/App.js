@@ -20,6 +20,7 @@ class BooksApp extends React.Component {
           })
       })
   }
+  //Handler for changing book's shelf. Will remove the current book and re-add it at the end of the list with the correct shelf
   changeShelf = (book) => {
     BooksAPI.update(book, book.shelf).then(() => {
       this.setState(currentState => ({
@@ -29,6 +30,7 @@ class BooksApp extends React.Component {
       
     })
   }
+  //Handler to set loading state
   setLoading = isLoading => {
     this.setState({
       loading: isLoading

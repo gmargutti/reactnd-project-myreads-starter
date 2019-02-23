@@ -3,6 +3,7 @@ import Shelf from './Shelf'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
+//Component that will provide the shelves for placing and grouping the books correctly
 class Shelves extends Component {
     shelves = [
         {id: 1, name: 'currentlyReading', title: 'Currently Reading'},
